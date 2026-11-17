@@ -20,6 +20,8 @@ public class GameNative {
     private GameNative() {
     }
 
+    public static native void setStoragePath(String path);
+
     public static native void initializeSAMP();
 
     public static native boolean implIsInitialized();
