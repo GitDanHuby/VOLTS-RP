@@ -415,8 +415,8 @@ void Log(const char* fmt, ...)
 
 	if (flLog == nullptr && pszStorage != nullptr)
 	{
-		sprintf(buffer, "/storage/emulated/0/GTA/logcat.txt");
-		flLog = fopen(buffer, "a");
+		snprintf(buffer, sizeof(buffer), "%slogcat.txt", g_pszStorage);
+flLog = fopen(buffer, "a");
 	}
 
 	memset(buffer, 0, sizeof(buffer));
