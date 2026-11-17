@@ -5,6 +5,7 @@
 #include "vendor/SimpleIni/SimpleIni.h"
 #include "game/game.h"
 
+extern char* g_pszStorage;
 extern CGame *pGame;
 
 CSettings::CSettings()
@@ -12,7 +13,7 @@ CSettings::CSettings()
 	Log("Loading settings..");	
 
 	char buff[0x7F];
-	sprintf(buff, "/storage/emulated/0/GTA/SAMP/settings.ini");
+	snprintf(buff, sizeof(buff), "%sSAMP/settings.ini", g_pszStorage);
 
 	INIReader reader(buff);
 
