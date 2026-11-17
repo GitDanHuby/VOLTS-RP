@@ -188,6 +188,8 @@ public abstract class GameActivityBase extends AppCompatActivity {
         Log.i(TAG, "[!!] onCreate: STORAGE_ROOT = " + storagePath
                 + " STORAGE_ROOT_BASE = " + storageBase);
         this.baseDirectory = GetGameBaseDirectory();
+        
+        GameNative.setStoragePath(this.baseDirectory);
 
         // 3. ناردنی زانیارییەکان بۆ کتێبخانەی گرافیک و ناوەکی
         NvUtil.getInstance().setActivity(this);
