@@ -26,7 +26,8 @@
 #include "crashlytics.h"
 #include "game/CFirstPersonCamera.hpp"
 #include "CServerManager.h"
-
+#include <string>
+#include <cstdlib>
 /*
 Peerapol Unarak
 */
@@ -36,6 +37,25 @@ JavaVM* javaVM;
 
 char* g_pszStorage = "/storage/emulated/0/GTA/";
 
+static std::string g_storagePath;
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_rockstargames_oswrapper_GameNative_setStoragePath(
+    JNIEnv* env,
+    jclass clazz,
+    jstring path
+) {
+    if (path == nullptr) return;
+
+    const char* nativePath = env->GetStringUTFChars(path, nullptr);
+    if (nativePath == nullptr) return;
+
+    g_storagePath = nativePath;
+    g_pszStorage = g_storagePath.data();
+
+    env->ReleaseStringUTFChars(path, nativePath);
+}
 UI* pUI = nullptr;
 CGame *pGame = nullptr;
 
